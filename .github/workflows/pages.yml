@@ -10,6 +10,10 @@ permissions:
   pages: write
   id-token: write
 
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   deploy:
     environment:
@@ -17,31 +21,39 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v5
+      - name: Checkout
+        uses: actions/checkout@v6
 
-      - name: Build
+      - name: Setup Pages
+        uses: actions/configure-pages@v6
+
+      - name: Build _site with only your 2 files
         run: |
           mkdir -p _site
           touch _site/.nojekyll
+          cp fitness-hub.html _site/
+          cp safety-plan.html _site/
 
-          find . -type f -name "*.html" ! -path "./_site/*" ! -path "./.git/*" | while read -r file; do
-            name=$(basename "$file" .html)
-            mkdir -p "_site/$name"
-            cp "$file" "_site/$name/index.html"
-          done
+          # create a homepage that lists both
+          cat > _site/index.html << 'HTML'
+          <!doctype html>
+          <html lang="en">
+          <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>mentally-here</title></head>
+          <body style="font-family:system-ui;max-width:600px;margin:40px auto;line-height:1.6">
+            <h1>mentally-here</h1>
+            <ul>
+              <li><a href="./fitness-hub.html">fitness-hub.html</a></li>
+              <li><a href="./safety-plan.html">safety-plan.html</a></li>
+            </ul>
+          </body>
+          </html>
+          HTML
 
-          # auto-index since you have no index.html
-          echo '<!DOCTYPE html><html><body><h1>Pages</h1><ul>' > _site/index.html
-          for d in _site/*/; do
-            p=$(basename "$d")
-            echo "<li><a href=\"$p/\">/$p/</a></li>" >> _site/index.html
-          done
-          echo '</ul></body></html>' >> _site/index.html
-
-      - uses: actions/upload-pages-artifact@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v5
         with:
           path: '_site'
 
-      - uses: actions/deploy-pages@v4
+      - name: Deploy to GitHub Pages
         id: deployment
+        uses: actions/deploy-pages@v5
