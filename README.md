@@ -1,6 +1,6 @@
 # Mentally Here
 
-A personal companion project for you [private wellbeing journey](https://pedromanuelamaral.github.io/mentally-here/Index.html). Started as a safety plan app, now evolving into a broader toolkit for navigating life's highs and lows (with art, other humans, and what you value as reasons to live).
+A personal companion [web app](https://pedromanuelamaral.github.io/mentally-here/Index.html) for your wellbeing. It started as a safety plan app, now evolving into a broader toolkit for navigating life's highs and lows (with art, other humans, and what you value as reasons to live).
 
 > "Pain is hard to bear," he cried, "But with patience, day by day, even this shall pass away." — Theodore Tilton
 
@@ -17,6 +17,7 @@ Your personal, offline-first mental health/suicide prevention safety plan interf
 - Emotional & Profession support contacts
 - Reasons to live & Comfort places
 - Your Personal checklists for times of crisis
+- Selection of art to keep you company
 
 **How it works:**
 1. Download [`safety-plan.html`](https://pedromanuelamaral.github.io/mentally-here/safety-plan.html)
