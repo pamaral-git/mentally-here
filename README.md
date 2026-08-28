@@ -1,6 +1,6 @@
-# [Mentally Here](https://pedromanuelamaral.github.io/mentally-here/Index.html)
+# Mentally Here
 
-A personal companion project for your mental health journey. Started as a safety plan app, now evolving into a broader toolkit for navigating life's highs and lows (with art, other humans, and what you value as reasons to live).
+A personal companion project for you [private wellbeing journey](https://pedromanuelamaral.github.io/mentally-here/Index.html). Started as a safety plan app, now evolving into a broader toolkit for navigating life's highs and lows (with art, other humans, and what you value as reasons to live).
 
 > "Pain is hard to bear," he cried, "But with patience, day by day, even this shall pass away." — Theodore Tilton
 
