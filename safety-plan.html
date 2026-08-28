@@ -1,141 +1,335 @@
-<html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>My Safety Plan</title>
+<title>My Safety Plan — Mentally Here</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&amp;family=DM+Sans:wght@300;400;500&amp;display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500;600;700&family=Outfit:wght@600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script>
+  try {
+    const savedTheme = localStorage.getItem("safetyPlan_theme") || localStorage.getItem("fitnessHub_v050_theme");
+    const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const theme = (savedTheme === "dark" || savedTheme === "light") ? savedTheme : (prefersDark ? "dark" : "light");
+    document.documentElement.setAttribute("data-theme", theme);
+  } catch (e) {}
+</script>
+
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: oklch(97% 0.008 60);
-    --bg-card: oklch(99% 0.005 60);
-    --bg-card-hover: oklch(100% 0.003 60);
-    --text-primary: oklch(18% 0.01 60);
-    --text-secondary: oklch(42% 0.01 60);
-    --text-muted: oklch(62% 0.008 60);
-    --border: oklch(88% 0.01 60);
-    --border-focus: oklch(52% 0.08 60);
-    --accent: oklch(52% 0.10 60);
-    --accent-subtle: oklch(92% 0.04 60);
-    --danger: oklch(52% 0.14 25);
-    --danger-subtle: oklch(94% 0.04 25);
-    --space-xs: 4px; --space-sm: 8px; --space-md: 16px;
-    --space-lg: 24px; --space-xl: 32px; --space-2xl: 48px;
-    --radius: 10px; --radius-sm: 6px;
+    color-scheme: light;
+    --bg: #f6f4ef;
+    --bg-card: #fffefa;
+    --bg-card-hover: #ffffff;
+    --text-primary: #151410;
+    --text-secondary: #514d45;
+    --text-muted: #6f6b64;
+    --border: #e9e2d2;
+    --border-strong: #d8d0bd;
+    --border-focus: #4a5e1a;
+    --accent: #4a5e1a;
+    --accent-subtle: #edf2e4;
+    --accent-bright: #b7ff3c;
+    --warm: #f2e2c4;
+    --blue-subtle: #dbeaf1;
+    --danger: #b33927;
+    --danger-subtle: #fdeeed;
+    --shadow: 0 12px 36px rgba(72, 63, 42, 0.08);
+    --shadow-dropdown: 0 14px 40px rgba(25, 24, 20, 0.14);
+
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+    --space-2xl: 48px;
+    --radius: 12px;
+    --radius-sm: 6px;
+    
     --font-serif: 'Fraunces', Georgia, serif;
     --font-sans: 'DM Sans', system-ui, sans-serif;
+    --font-display: 'Outfit', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
     --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   [data-theme="dark"] {
-    --bg: oklch(14% 0.01 60);
-    --bg-card: oklch(18% 0.01 60);
-    --bg-card-hover: oklch(21% 0.01 60);
-    --text-primary: oklch(93% 0.008 60);
-    --text-secondary: oklch(68% 0.008 60);
-    --text-muted: oklch(50% 0.008 60);
-    --border: oklch(26% 0.01 60);
-    --border-focus: oklch(68% 0.08 60);
-    --accent: oklch(72% 0.10 60);
-    --accent-subtle: oklch(22% 0.04 60);
-    --danger: oklch(68% 0.14 25);
-    --danger-subtle: oklch(20% 0.04 25);
+    color-scheme: dark;
+    --bg: #0e0e0c;
+    --bg-card: #161614;
+    --bg-card-hover: #1e1e1a;
+    --text-primary: #f5f2eb;
+    --text-secondary: #a69f92;
+    --text-muted: #797367;
+    --border: rgba(245, 242, 235, 0.12);
+    --border-strong: rgba(245, 242, 235, 0.24);
+    --border-focus: #b7ff3c;
+    --accent: #b7ff3c;
+    --accent-subtle: rgba(183, 255, 60, 0.12);
+    --accent-bright: #c8ff5e;
+    --warm: #322818;
+    --blue-subtle: #162833;
+    --danger: #f87171;
+    --danger-subtle: rgba(255, 107, 107, 0.14);
+    --shadow: 0 16px 44px rgba(0, 0, 0, 0.48);
+    --shadow-dropdown: 0 18px 48px rgba(0, 0, 0, 0.6);
   }
 
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   }
 
-  html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+  html {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+    overflow-x: hidden;
+  }
 
   body {
     font-family: var(--font-sans);
     background: var(--bg);
     color: var(--text-primary);
     min-height: 100vh;
+    overflow-x: hidden;
     padding: env(safe-area-inset-top, 0) env(safe-area-inset-right, 0) env(safe-area-inset-bottom, 0) env(safe-area-inset-left, 0);
     transition: background 0.3s var(--ease-out), color 0.3s var(--ease-out);
+    -webkit-font-smoothing: antialiased;
   }
 
   /* ── TOPBAR ── */
   .topbar {
-    position: sticky; top: 0; z-index: 100;
-    background: var(--bg);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(246, 244, 239, 0.92);
     border-bottom: 1px solid var(--border);
-    padding: var(--space-md) var(--space-xl);
-    display: flex; align-items: center; justify-content: space-between;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    padding: 10px var(--space-xl);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-sm);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     transition: background 0.3s var(--ease-out), border-color 0.3s var(--ease-out);
   }
 
-  .topbar-title {
-    font-family: var(--font-serif);
-    font-size: 1.125rem;
-    font-weight: 300;
-    color: var(--text-primary);
-    letter-spacing: 0.01em;
+  [data-theme="dark"] .topbar {
+    background: rgba(14, 14, 12, 0.9);
   }
 
-  .topbar-actions { display: flex; gap: var(--space-sm); align-items: center; }
+  .topbar-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    flex-shrink: 1;
+  }
+
+  .topbar-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: var(--text-primary);
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 1.05rem;
+    letter-spacing: -0.01em;
+    padding: 5px 8px;
+    border-radius: var(--radius-sm);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .topbar-back:hover {
+    background: var(--accent-subtle);
+    color: var(--accent);
+  }
+
+  .topbar-tag {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-subtle);
+    padding: 3px 6px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .topbar-actions {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-shrink: 0;
+  }
 
   .icon-btn {
-    width: 40px; height: 40px;
+    width: 38px;
+    height: 38px;
     border: 1px solid var(--border);
     border-radius: var(--radius-sm);
     background: var(--bg-card);
-    color: var(--text-secondary);
+    color: var(--text-primary);
     cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: all 0.15s var(--ease-out);
     position: relative;
     font-size: 1rem;
+    text-decoration: none;
+    flex-shrink: 0;
   }
-  .icon-btn:hover { background: var(--bg-card-hover); color: var(--text-primary); border-color: var(--border-focus); transform: translateY(-1px); }
-  .icon-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-  .icon-btn:active { transform: translateY(0); }
+
+  .icon-btn:hover {
+    background: var(--bg-card-hover);
+    color: var(--text-primary);
+    border-color: var(--border-focus);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  }
+
+  .icon-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .icon-btn:active {
+    transform: translateY(0);
+  }
+
+  /* ── TOOLTIPS (Render Below & Disabled on Mobile/Touch to Prevent Overflow) ── */
+  [data-tooltip] {
+    position: relative;
+  }
+
+  @media (hover: hover) and (min-width: 681px) {
+    [data-tooltip]::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%) translateY(-2px);
+      background: var(--text-primary);
+      color: var(--bg);
+      font-size: 0.75rem;
+      font-family: var(--font-sans);
+      font-weight: 500;
+      padding: 4px 8px;
+      border-radius: 5px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.15s var(--ease-out), transform 0.15s var(--ease-out);
+      z-index: 220;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+    }
+
+    .topbar-actions > [data-tooltip]:last-child::after,
+    .topbar-actions > .dropdown:last-child [data-tooltip]::after {
+      left: auto;
+      right: 0;
+      transform: translateY(-2px);
+    }
+
+    [data-tooltip]:hover::after {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .topbar-actions > [data-tooltip]:last-child:hover::after,
+    .topbar-actions > .dropdown:last-child [data-tooltip]:hover::after {
+      transform: translateY(0);
+    }
+
+    .dropdown.open [data-tooltip]::after {
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+  }
 
   /* Dropdown */
   .dropdown { position: relative; }
   .dropdown-menu {
-    position: absolute; top: calc(100% + 6px); right: 0;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
     background: var(--bg-card);
-    border: 1px solid var(--border);
+    border: 1px solid var(--border-strong);
     border-radius: var(--radius);
     padding: var(--space-sm);
-    min-width: 200px;
-    opacity: 0; transform: translateY(-8px) scale(0.97);
+    min-width: 210px;
+    max-width: 280px;
+    opacity: 0;
+    transform: translateY(-6px) scale(0.97);
     pointer-events: none;
-    transition: all 0.2s var(--ease-out);
+    transition: all 0.18s var(--ease-out);
     z-index: 200;
-    box-shadow: 0 8px 32px oklch(0% 0 0 / 0.08);
+    box-shadow: var(--shadow-dropdown);
   }
-  .dropdown.open .dropdown-menu { opacity: 1; transform: translateY(0) scale(1); pointer-events: all; }
+
+  .dropdown.open .dropdown-menu {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: all;
+  }
 
   .dropdown-item {
-    display: flex; align-items: center; gap: var(--space-sm);
-    padding: var(--space-sm) var(--space-md);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: 9px var(--space-md);
     border-radius: var(--radius-sm);
     text-decoration: none;
     color: var(--text-primary);
-    font-size: 0.875rem;
+    font-size: 0.88rem;
     font-family: var(--font-sans);
-    transition: background 0.1s;
+    font-weight: 500;
+    transition: background 0.12s ease, color 0.12s ease;
     cursor: pointer;
-    border: none; background: none; width: 100%; text-align: left;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
   }
-  .dropdown-item:hover { background: var(--accent-subtle); }
+
+  .dropdown-item:hover {
+    background: var(--accent-subtle);
+    color: var(--accent);
+  }
+
   .dropdown-label {
-    font-size: 0.7rem; font-weight: 500;
-    color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em;
-    padding: var(--space-sm) var(--space-md) var(--space-xs);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: var(--space-xs) var(--space-md);
   }
-  .dropdown-divider { height: 1px; background: var(--border); margin: var(--space-xs) 0; }
+
+  .dropdown-divider {
+    height: 1px;
+    background: var(--border);
+    margin: var(--space-xs) 0;
+  }
 
   /* ── MAIN LAYOUT ── */
   .container {
-    max-width: 1100px;
+    max-width: 1120px;
     margin: 0 auto;
     padding: var(--space-2xl) var(--space-xl);
   }
@@ -147,22 +341,44 @@
     border-bottom: 1px solid var(--border);
   }
 
+  .hero-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: var(--space-md);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .hero-kicker::before {
+    content: "";
+    width: 36px;
+    height: 2px;
+    background: var(--accent);
+    display: block;
+  }
+
   .hero-title {
     font-family: var(--font-serif);
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 300;
+    font-size: clamp(2.2rem, 5.5vw, 4.2rem);
+    font-weight: 400;
     color: var(--text-primary);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.035em;
+    line-height: 1.05;
     margin-bottom: var(--space-lg);
   }
 
   .hero-quote {
     font-family: var(--font-serif);
     font-style: italic;
-    font-size: 1rem;
+    font-size: 1.05rem;
     color: var(--text-muted);
     line-height: 1.8;
-    max-width: 42ch;
+    max-width: 44ch;
     margin: 0 auto;
   }
 
@@ -174,12 +390,6 @@
     margin-bottom: var(--space-lg);
   }
 
-  @media (max-width: 640px) {
-    .grid { grid-template-columns: 1fr; }
-    .container { padding: var(--space-lg) var(--space-md); }
-    .topbar { padding: var(--space-md); }
-  }
-
   .full-width { grid-column: 1 / -1; }
 
   /* ── CARD ── */
@@ -188,42 +398,66 @@
     border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: var(--space-xl);
-    transition: background 0.3s var(--ease-out), border-color 0.3s var(--ease-out);
+    scroll-margin-top: 80px;
+    transition: background 0.3s var(--ease-out), border-color 0.22s var(--ease-out), box-shadow 0.22s var(--ease-out);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+  }
+
+  .card:hover {
+    border-color: var(--border-strong);
   }
 
   .card-header {
-    display: flex; align-items: center; justify-content: space-between;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px solid var(--border);
   }
 
   .card-title {
     font-family: var(--font-serif);
-    font-size: 1.125rem;
+    font-size: 1.35rem;
     font-weight: 400;
     color: var(--text-primary);
-    letter-spacing: -0.01em;
+    letter-spacing: -0.015em;
   }
 
-  .card-icon { font-size: 1rem; opacity: 0.5; }
+  .card-icon {
+    font-size: 1.15rem;
+    opacity: 0.85;
+  }
 
   /* ── EDITABLE LIST ── */
-  .item-list { list-style: none; display: flex; flex-direction: column; gap: var(--space-sm); }
+  .item-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
 
   .item-row {
-    display: flex; align-items: flex-start; gap: var(--space-sm);
-    padding: var(--space-sm) var(--space-sm);
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    padding: 6px var(--space-sm);
     border-radius: var(--radius-sm);
     border: 1px solid transparent;
     transition: background 0.15s, border-color 0.15s;
   }
-  .item-row:hover { background: var(--accent-subtle); }
+
+  .item-row:hover {
+    background: var(--accent-subtle);
+  }
 
   .item-number {
-    font-family: var(--font-serif);
+    font-family: var(--font-mono);
     font-size: 0.75rem;
+    font-weight: 600;
     color: var(--text-muted);
-    padding-top: 3px;
-    min-width: 18px;
+    padding-top: 4px;
+    min-width: 20px;
     font-variant-numeric: tabular-nums;
   }
 
@@ -241,233 +475,449 @@
     width: 100%;
     padding: 0;
   }
-  .item-text:focus { color: var(--text-primary); }
+
+  .item-text:focus {
+    color: var(--text-primary);
+  }
 
   .item-delete {
-    opacity: 0; width: 24px; height: 24px;
-    border: none; background: none; cursor: pointer;
-    color: var(--text-muted); border-radius: 4px;
-    display: flex; align-items: center; justify-content: center;
+    opacity: 0;
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: var(--text-muted);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: opacity 0.15s, color 0.15s, background 0.15s;
-    flex-shrink: 0; font-size: 0.875rem;
+    flex-shrink: 0;
+    font-size: 0.875rem;
   }
+
   .item-row:hover .item-delete { opacity: 1; }
   .item-delete:hover { color: var(--danger); background: var(--danger-subtle); }
 
   .add-item-btn {
-    display: flex; align-items: center; gap: var(--space-sm);
-    padding: var(--space-sm) var(--space-sm);
-    border: 1px dashed var(--border);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: 9px var(--space-md);
+    border: 1px dashed var(--border-strong);
     border-radius: var(--radius-sm);
-    background: none; cursor: pointer;
-    color: var(--text-muted); font-size: 0.875rem;
-    font-family: var(--font-sans);
-    width: 100%; text-align: left;
+    background: none;
+    cursor: pointer;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    width: 100%;
+    text-align: left;
     transition: all 0.15s var(--ease-out);
     margin-top: var(--space-sm);
   }
-  .add-item-btn:hover { border-color: var(--border-focus); color: var(--text-primary); background: var(--accent-subtle); }
+
+  .add-item-btn:hover {
+    border-color: var(--border-focus);
+    color: var(--text-primary);
+    background: var(--accent-subtle);
+  }
 
   /* ── CONTACT ITEMS ── */
   .contact-row {
-    display: flex; align-items: center; gap: var(--space-md);
-    padding: var(--space-sm) var(--space-sm);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: 8px var(--space-sm);
     border-radius: var(--radius-sm);
     border: 1px solid transparent;
     transition: background 0.15s;
+    width: 100%;
   }
+
   .contact-row:hover { background: var(--accent-subtle); }
 
   .contact-name {
-    font-size: 0.9375rem; color: var(--text-primary);
+    font-size: 0.9375rem;
+    color: var(--text-primary);
     font-family: var(--font-sans);
-    background: transparent; border: none; outline: none;
-    width: 130px; font-weight: 500;
+    background: transparent;
+    border: none;
+    outline: none;
+    width: 140px;
+    font-weight: 600;
+    flex-shrink: 0;
   }
+
   .contact-phone {
-    flex: 1; font-size: 0.9rem;
+    flex: 1;
+    min-width: 0;
+    font-size: 0.9rem;
     color: var(--text-secondary);
-    font-family: var(--font-sans);
-    background: transparent; border: none; outline: none;
+    font-family: var(--font-mono);
+    background: transparent;
+    border: none;
+    outline: none;
   }
+
   .contact-call {
-    width: 32px; height: 32px; border-radius: var(--radius-sm);
-    background: var(--accent-subtle); border: none; cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    color: var(--accent); font-size: 0.875rem;
-    transition: all 0.15s; flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    border-radius: var(--radius-sm);
+    background: var(--accent-subtle);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    font-size: 0.9rem;
+    transition: all 0.15s;
+    flex-shrink: 0;
     text-decoration: none;
   }
-  .contact-call:hover { background: var(--accent); color: var(--bg); }
 
-  .section-label {
-    font-size: 0.7rem; font-weight: 500; letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--text-muted);
-    margin-bottom: var(--space-sm); margin-top: var(--space-md);
+  .contact-call:hover {
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
   }
-  .section-label:first-child { margin-top: 0; }
 
   /* ── CHECKLIST ── */
   .checklist-group { margin-bottom: var(--space-md); }
 
   .checklist-location-header {
-    display: flex; align-items: center; justify-content: space-between;
-    cursor: pointer; padding: var(--space-sm) 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    padding: var(--space-sm) 0;
     border-bottom: 1px solid var(--border);
     margin-bottom: var(--space-sm);
     user-select: none;
   }
+
   .checklist-location-header span {
-    font-size: 0.875rem; font-weight: 500; color: var(--text-secondary);
+    font-family: var(--font-sans);
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--text-primary);
   }
-  .chevron { font-size: 0.75rem; color: var(--text-muted); transition: transform 0.2s var(--ease-out); }
+
+  .chevron {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    transition: transform 0.2s var(--ease-out);
+  }
+
   .checklist-group.collapsed .checklist-items { display: none; }
   .checklist-group.collapsed .chevron { transform: rotate(-90deg); }
 
   .check-row {
-    display: flex; align-items: center; gap: var(--space-md);
-    padding: var(--space-sm) var(--space-sm);
-    border-radius: var(--radius-sm); cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: 8px var(--space-sm);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
     transition: background 0.15s;
   }
+
   .check-row:hover { background: var(--accent-subtle); }
 
   .check-box {
-    width: 18px; height: 18px; border-radius: 4px;
-    border: 1.5px solid var(--border);
-    flex-shrink: 0; display: flex; align-items: center; justify-content: center;
-    transition: all 0.15s; background: transparent;
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    border: 1.5px solid var(--border-strong);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    background: transparent;
+    font-size: 11px;
+    font-weight: 700;
     cursor: pointer;
   }
+
   .check-row.checked .check-box {
-    background: var(--accent); border-color: var(--accent); color: var(--bg);
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--bg);
   }
+
   .check-label {
-    font-size: 0.9375rem; color: var(--text-primary);
+    font-size: 0.9375rem;
+    color: var(--text-primary);
     transition: color 0.15s;
     font-family: var(--font-sans);
-    background: transparent; border: none; outline: none; flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    flex: 1;
   }
-  .check-row.checked .check-label { color: var(--text-muted); text-decoration: line-through; }
+
+  .check-row.checked .check-label {
+    color: var(--text-muted);
+    text-decoration: line-through;
+  }
 
   /* ── REASONS TO LIVE ── */
   .reasons-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: var(--space-md);
   }
 
   .reason-card {
-    background: var(--accent-subtle);
+    background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: var(--space-lg);
-    min-height: 100px;
-    display: flex; flex-direction: column;
-    transition: background 0.15s, border-color 0.15s;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    transition: background 0.15s, border-color 0.15s, transform 0.15s;
     position: relative;
   }
-  .reason-card:hover { border-color: var(--border-focus); }
+
+  .reason-card:hover {
+    border-color: var(--border-focus);
+    transform: translateY(-2px);
+  }
 
   .reason-number {
-    font-family: var(--font-serif);
-    font-size: 2rem; font-weight: 300;
-    color: var(--border-focus);
-    opacity: 0.4;
+    font-family: var(--font-mono);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--accent);
+    opacity: 0.6;
     margin-bottom: var(--space-sm);
     line-height: 1;
   }
 
   .reason-text {
-    flex: 1; font-size: 0.9375rem;
-    line-height: 1.6; color: var(--text-primary);
+    flex: 1;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-primary);
     font-family: var(--font-sans);
-    background: transparent; border: none; outline: none;
-    resize: none; width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    resize: none;
+    width: 100%;
   }
 
   .reason-delete {
-    position: absolute; top: var(--space-sm); right: var(--space-sm);
-    opacity: 0; width: 24px; height: 24px;
-    border: none; background: none; cursor: pointer;
-    color: var(--text-muted); border-radius: 4px;
-    display: flex; align-items: center; justify-content: center;
+    position: absolute;
+    top: var(--space-sm);
+    right: var(--space-sm);
+    opacity: 0;
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: var(--text-muted);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: opacity 0.15s, color 0.15s;
   }
+
   .reason-card:hover .reason-delete { opacity: 1; }
   .reason-delete:hover { color: var(--danger); }
 
   .reason-add {
     background: transparent;
-    border: 1px dashed var(--border);
+    border: 1px dashed var(--border-strong);
     border-radius: var(--radius);
     padding: var(--space-lg);
-    min-height: 100px;
-    display: flex; align-items: center; justify-content: center;
-    cursor: pointer; color: var(--text-muted); font-size: 1.5rem;
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-muted);
+    font-size: 1.5rem;
     transition: all 0.15s var(--ease-out);
     font-family: var(--font-sans);
   }
-  .reason-add:hover { border-color: var(--border-focus); color: var(--text-primary); background: var(--accent-subtle); }
+
+  .reason-add:hover {
+    border-color: var(--border-focus);
+    color: var(--text-primary);
+    background: var(--accent-subtle);
+  }
 
   /* ── SAVE BAR ── */
   .save-bar {
-    position: fixed; bottom: env(safe-area-inset-bottom, 0); left: 0; right: 0;
-    background: var(--bg);
+    position: fixed;
+    bottom: env(safe-area-inset-bottom, 0);
+    left: 0;
+    right: 0;
+    background: rgba(246, 244, 239, 0.94);
     border-top: 1px solid var(--border);
-    padding: var(--space-md) var(--space-xl);
-    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px var(--space-xl);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     gap: var(--space-md);
     z-index: 99;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     transition: background 0.3s var(--ease-out);
   }
 
-  .save-hint { font-size: 0.8125rem; color: var(--text-muted); }
+  [data-theme="dark"] .save-bar {
+    background: rgba(14, 14, 12, 0.94);
+  }
+
+  .save-hint {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    line-height: 1.4;
+  }
 
   .save-btn {
-    display: flex; align-items: center; gap: var(--space-sm);
-    padding: var(--space-sm) var(--space-lg);
-    background: var(--text-primary); color: var(--bg);
-    border: none; border-radius: var(--radius-sm);
-    font-size: 0.875rem; font-family: var(--font-sans); font-weight: 500;
-    cursor: pointer; transition: all 0.15s var(--ease-out);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    background: var(--text-primary);
+    color: var(--bg);
+    border: 1px solid var(--text-primary);
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s var(--ease-out);
     white-space: nowrap;
+    flex-shrink: 0;
   }
-  .save-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+
+  .save-btn:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+  }
+
   .save-btn:active { transform: translateY(0); }
 
-  .spacer-bottom { height: 80px; }
+  .spacer-bottom { height: 96px; }
 
-  /* ── TOOLTIP ── */
-  [data-tooltip] { position: relative; }
-  [data-tooltip]::after {
-    content: attr(data-tooltip);
-    position: absolute; bottom: calc(100% + 6px);
-    left: 50%; transform: translateX(-50%);
-    background: var(--text-primary); color: var(--bg);
-    font-size: 0.75rem; font-family: var(--font-sans);
-    padding: 4px 8px; border-radius: 4px; white-space: nowrap;
-    opacity: 0; pointer-events: none; transition: opacity 0.15s;
-    max-width: min(200px, calc(100vw - 24px));
+  /* ── RESPONSIVE BREAKPOINTS (Mobile & Tablet Refinements) ── */
+  @media (max-width: 820px) {
+    .grid { grid-template-columns: 1fr; gap: var(--space-md); }
+    .container { padding: var(--space-lg) var(--space-md); }
+    .card { padding: var(--space-lg); }
   }
-  /* Rightmost icon (last child) risks overflowing the viewport edge, so anchor it to the right instead of centering */
-  .topbar-actions > [data-tooltip]:last-child::after {
-    left: auto; right: 0; transform: none;
+
+  @media (max-width: 680px) {
+    .topbar {
+      padding: 8px 12px;
+      gap: 6px;
+    }
+    
+    .topbar-nav {
+      gap: 4px;
+    }
+
+    .topbar-back {
+      font-size: 0.95rem;
+      padding: 4px 6px;
+    }
+
+    .topbar-tag {
+      display: none; /* Hide decorative sub-tag on small screens to prioritize clean action buttons */
+    }
+
+    .icon-btn {
+      width: 35px;
+      height: 35px;
+      font-size: 0.92rem;
+    }
+
+    .topbar-actions {
+      gap: 4px;
+    }
+
+    .dropdown-menu {
+      min-width: 190px;
+    }
+
+    .hero-title {
+      font-size: clamp(1.85rem, 8vw, 2.6rem);
+    }
+
+    .hero-quote {
+      font-size: 0.92rem;
+    }
+
+    .contact-row {
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 6px 4px;
+    }
+
+    .contact-name {
+      width: 100%;
+    }
+
+    .contact-phone {
+      flex: 1;
+      min-width: 120px;
+    }
+
+    .reasons-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .save-bar {
+      padding: 10px 14px;
+      gap: 10px;
+    }
+
+    .save-hint {
+      font-size: 0.75rem;
+    }
+
+    .save-btn {
+      padding: 8px 12px;
+      font-size: 0.8rem;
+    }
   }
-  [data-tooltip]:hover::after { opacity: 1; }
+
+  @media (max-width: 360px) {
+    .topbar-back span:last-child {
+      display: none; /* Icon-only back button on ultra-narrow screens */
+    }
+    .icon-btn {
+      width: 32px;
+      height: 32px;
+      font-size: 0.85rem;
+    }
+  }
 
   /* Stagger animations on load */
-  .card { animation: fadeUp 0.5s var(--ease-out) both; }
-  .card:nth-child(1) { animation-delay: 0.05s; }
-  .card:nth-child(2) { animation-delay: 0.10s; }
-  .card:nth-child(3) { animation-delay: 0.15s; }
-  .card:nth-child(4) { animation-delay: 0.20s; }
-  .card:nth-child(5) { animation-delay: 0.25s; }
-  .card:nth-child(6) { animation-delay: 0.30s; }
-  .card:nth-child(7) { animation-delay: 0.35s; }
+  .card { animation: fadeUp 0.45s var(--ease-out) both; }
+  .card:nth-child(1) { animation-delay: 0.04s; }
+  .card:nth-child(2) { animation-delay: 0.08s; }
+  .card:nth-child(3) { animation-delay: 0.12s; }
+  .card:nth-child(4) { animation-delay: 0.16s; }
+  .card:nth-child(5) { animation-delay: 0.20s; }
+  .card:nth-child(6) { animation-delay: 0.24s; }
+  .card:nth-child(7) { animation-delay: 0.28s; }
 
   @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(12px); }
+    from { opacity: 0; transform: translateY(10px); }
     to   { opacity: 1; transform: translateY(0); }
   }
 </style>
@@ -475,8 +925,16 @@
 <body>
 
 <header class="topbar">
-  <span class="topbar-title">My Safety Plan</span>
+  <div class="topbar-nav">
+    <a href="./Index.html" class="topbar-back" data-tooltip="Back to Mentally Here home" aria-label="Back to home">
+      <span>Mentally Here</span>
+    </a>
+    <span class="topbar-tag">Safety Plan</span>
+  </div>
+
   <div class="topbar-actions">
+    <!-- Quick Link to Fitness Hub -->
+    <a href="./fitness-hub.html" class="icon-btn" data-tooltip="Fitness Hub (Physical Health)" aria-label="Fitness Hub">🏃</a>
 
     <!-- Light/Dark Mode -->
     <button class="icon-btn" id="themeToggle" data-tooltip="Toggle theme" aria-label="Toggle theme">☀️</button>
@@ -485,33 +943,36 @@
     <div class="dropdown" id="supportDropdown">
       <button class="icon-btn" data-tooltip="Quick support" aria-label="Quick support" onclick="toggleDropdown('supportDropdown')">🆘</button>
       <div class="dropdown-menu" role="menu">
-        <div class="dropdown-label">Quick Support</div>
-        <button class="dropdown-item" onclick="scrollToSection('emotional-support')">💛 Emotional Support</button>
-        <button class="dropdown-item" onclick="scrollToSection('professional-support')">🏥 Professional Support</button>
+        <div class="dropdown-label">Support</div>
+        <button class="dropdown-item" onclick="scrollToSection('emotional-support')">💛 Emotional</button>
+        <button class="dropdown-item" onclick="scrollToSection('professional-support')">🏥 Professional</button>
       </div>
     </div>
 
     <!-- Playlists Distraction -->
     <div class="dropdown" id="distractionDropdown">
-      <button class="icon-btn" data-tooltip="Art playlist" aria-label="Art playlist" onclick="toggleDropdown('distractionDropdown')">🎨</button>
+      <button class="icon-btn" data-tooltip="Art & Music playlists" aria-label="Art & Music playlists" onclick="toggleDropdown('distractionDropdown')">🎼</button>
       <div class="dropdown-menu" role="menu">
-        <div class="dropdown-label">Quick Distraction</div>
-        <a class="dropdown-item" href="https://open.spotify.com/playlist/37i9dQZF1DWYuC8hQpLKaY" target="_blank">🫂 Hug</a>
-        <a class="dropdown-item" href="https://open.spotify.com/playlist/37i9dQZF1DWSkMjlBZAZ07" target="_blank">🪕 Folk</a>
-        <a class="dropdown-item" href="https://open.spotify.com/playlist/2h6L48JfSTToDaU7gbW7M2" target="_blank">🛋️ Comfort</a>
-        <a class="dropdown-item" href="https://open.spotify.com/playlist/37i9dQZF1EVJHK7Q1TBABQ" target="_blank">🌞 Upbeat</a>
+        <div class="dropdown-label">Music</div>
+        <a class="dropdown-item" href="https://open.spotify.com/playlist/37i9dQZF1DWYuC8hQpLKaY" target="_blank" rel="noopener noreferrer">🫂 Hug</a>
+        <a class="dropdown-item" href="https://music.youtube.com/playlist?list=RDCLAK5uy_lE5hd-xT1yLqpoQWn8BOo99JL45hC31d8&playnext=1&si=gLSED38nTI1nyk0j" target="_blank" rel="noopener noreferrer">🧘 Mindfull</a>
+        <a class="dropdown-item" href="https://music.youtube.com/playlist?list=RDCLAK5uy_kHxApOoT9Wb-lfZtBnTpf_ZLyDOyZ0SAE&playnext=1&si=gGYQ3CgyXDhBLUOc" target="_blank" rel="noopener noreferrer">🛋️ Comfort</a>
+        <a class="dropdown-item" href="https://open.spotify.com/playlist/37i9dQZF1EVJHK7Q1TBABQ" target="_blank" rel="noopener noreferrer">🌞 Upbeat</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="https://youtu.be/xby5467EbdU" target="_blank" rel="noopener noreferrer">🎼 Maggot Brain</a>
       </div>
     </div>
 
     <!-- Resources -->
     <div class="dropdown" id="resourcesDropdown">
-      <button class="icon-btn" data-tooltip="Quick resources" aria-label="Quick resources" onclick="toggleDropdown('resourcesDropdown')">🧠</button>
+      <button class="icon-btn" data-tooltip="Quick resources" aria-label="Quick resources" onclick="toggleDropdown('resourcesDropdown')">📖</button>
       <div class="dropdown-menu" role="menu">
-        <div class="dropdown-label">Quick Resources</div>
-        <a class="dropdown-item" href="https://open.spotify.com/playlist/37i9dQZF1DX0E9XMGembJo" target="_blank">💊 SSRI Playlist</a>
+        <div class="dropdown-label">Art Companion</div>
+        <a class="dropdown-item" href="https://www.gutenberg.org/ebooks/23901" target="_blank" rel="noopener noreferrer">🐦‍⬛ Raven</a>
+        <a class="dropdown-item" href="https://youtu.be/NrMINC5xjMs" target="_blank" rel="noopener noreferrer">🕯️ Mirror</a>
+        <a class="dropdown-item" href="https://youtu.be/NrMINC5xjMs" target="_blank" rel="noopener noreferrer">🎭 Vanya</a>
       </div>
     </div>
-
   </div>
 </header>
 
@@ -529,82 +990,22 @@
   <div class="grid">
 
     <!-- Warning Signs -->
-    <div class="card">
+    <div class="card" id="warning-signs">
       <div class="card-header">
         <h2 class="card-title">Warning Signs</h2>
         <span class="card-icon">⚠️</span>
       </div>
-      <ul class="item-list" id="signs-list"><li class="item-row">
-      <span class="item-number">1</span>
-      <textarea class="item-text" rows="1" oninput="updateItem('signs', 0, this.value); autoResize(this)" onblur="saveState()" style="height: 23px;">[Insert warning sign 1]</textarea>
-      <button class="item-delete" onclick="deleteItem('signs', 0)" aria-label="Delete">✕</button>
-    </li><li class="item-row">
-      <span class="item-number">2</span>
-      <textarea class="item-text" rows="1" oninput="updateItem('signs', 1, this.value); autoResize(this)" onblur="saveState()" style="height: 23px;">[Insert warning sign 2]</textarea>
-      <button class="item-delete" onclick="deleteItem('signs', 1)" aria-label="Delete">✕</button>
-    </li><li class="item-row">
-      <span class="item-number">3</span>
-      <textarea class="item-text" rows="1" oninput="updateItem('signs', 2, this.value); autoResize(this)" onblur="saveState()" style="height: 23px;">[Insert warning sign 3]</textarea>
-      <button class="item-delete" onclick="deleteItem('signs', 2)" aria-label="Delete">✕</button>
-    </li><li class="item-row">
-      <span class="item-number">4</span>
-      <textarea class="item-text" rows="1" oninput="updateItem('signs', 3, this.value); autoResize(this)" onblur="saveState()" style="height: 23px;">[Insert warning sign 4]</textarea>
-      <button class="item-delete" onclick="deleteItem('signs', 3)" aria-label="Delete">✕</button>
-    </li><li class="item-row">
-      <span class="item-number">5</span>
-      <textarea class="item-text" rows="1" oninput="updateItem('signs', 4, this.value); autoResize(this)" onblur="saveState()" style="height: 23px;">[Insert warning sign 5]</textarea>
-      <button class="item-delete" onclick="deleteItem('signs', 4)" aria-label="Delete">✕</button>
-    </li><li class="item-row">
-      <span class="item-number">6</span>
-      <textarea class="item-text" rows="1" oninput="updateItem('signs', 5, this.value); autoResize(this)" onblur="saveState()" style="height: 23px;">[Insert warning sign 6]</textarea>
-      <button class="item-delete" onclick="deleteItem('signs', 5)" aria-label="Delete">✕</button>
-    </li><li class="item-row">
-      <span class="item-number">7</span>
-      <textarea class="item-text" rows="1" oninput="updateItem('signs', 6, this.value); autoResize(this)" onblur="saveState()" style="height: 23px;">[Insert warning sign 7]</textarea>
-      <button class="item-delete" onclick="deleteItem('signs', 6)" aria-label="Delete">✕</button>
-    </li><li class="item-row">
-      <span class="item-number">8</span>
-      <textarea class="item-text" rows="1" oninput="updateItem('signs', 7, this.value); autoResize(this)" onblur="saveState()" style="height: 23px;">[Insert warning sign 8]</textarea>
-      <button class="item-delete" onclick="deleteItem('signs', 7)" aria-label="Delete">✕</button>
-    </li></ul>
+      <ul class="item-list" id="signs-list"></ul>
       <button class="add-item-btn" onclick="addItem('signs')">＋ Add sign</button>
     </div>
 
     <!-- Coping Strategies -->
-    <div class="card">
+    <div class="card" id="coping-strategies">
       <div class="card-header">
         <h2 class="card-title">Coping Strategies</h2>
         <span class="card-icon">🌿</span>
       </div>
-      <ul class="item-list" id="strategies-list"><li class="item-row">
-      <span class="item-number">1</span>
-      <textarea class="item-text" rows="1" oninput="updateItem('strategies', 0, this.value); autoResize(this)" onblur="saveState()" style="height: 23px;">[Insert coping strategy 1]</textarea>
-      <button class="item-delete" onclick="deleteItem('strategies', 0)" aria-label="Delete">✕</button>
-    </li><li class="item-row">
-      <span class="item-number">2</span>
-      <textarea class="item-text" rows="1" oninput="updateItem('strategies', 1, this.value); autoResize(this)" onblur="saveState()" style="height: 23px;">[Insert coping strategy 2]</textarea>
-      <button class="item-delete" onclick="deleteItem('strategies', 1)" aria-label="Delete">✕</button>
-    </li><li class="item-row">
-      <span class="item-number">3</span>
-      <textarea class="item-text" rows="1" oninput="updateItem('strategies', 2, this.value); autoResize(this)" onblur="saveState()" style="height: 23px;">[Insert coping strategy 3]</textarea>
-      <button class="item-delete" onclick="deleteItem('strategies', 2)" aria-label="Delete">✕</button>
-    </li><li class="item-row">
-      <span class="item-number">4</span>
-      <textarea class="item-text" rows="1" oninput="updateItem('strategies', 3, this.value); autoResize(this)" onblur="saveState()" style="height: 23px;">[Insert coping strategy 4]</textarea>
-      <button class="item-delete" onclick="deleteItem('strategies', 3)" aria-label="Delete">✕</button>
-    </li><li class="item-row">
-      <span class="item-number">5</span>
-      <textarea class="item-text" rows="1" oninput="updateItem('strategies', 4, this.value); autoResize(this)" onblur="saveState()" style="height: 23px;">[Insert coping strategy 5]</textarea>
-      <button class="item-delete" onclick="deleteItem('strategies', 4)" aria-label="Delete">✕</button>
-    </li><li class="item-row">
-      <span class="item-number">6</span>
-      <textarea class="item-text" rows="1" oninput="updateItem('strategies', 5, this.value); autoResize(this)" onblur="saveState()" style="height: 23px;">[Insert coping strategy 6]</textarea>
-      <button class="item-delete" onclick="deleteItem('strategies', 5)" aria-label="Delete">✕</button>
-    </li><li class="item-row">
-      <span class="item-number">7</span>
-      <textarea class="item-text" rows="1" oninput="updateItem('strategies', 6, this.value); autoResize(this)" onblur="saveState()" style="height: 23px;"></textarea>
-      <button class="item-delete" onclick="deleteItem('strategies', 6)" aria-label="Delete">✕</button>
-    </li></ul>
+      <ul class="item-list" id="strategies-list"></ul>
       <button class="add-item-btn" onclick="addItem('strategies')">＋ Add strategy</button>
     </div>
 
@@ -614,23 +1015,7 @@
         <h2 class="card-title">Emotional Support</h2>
         <span class="card-icon">💛</span>
       </div>
-      <div id="emotional-contacts"><div class="contact-row">
-      <input class="contact-name" value="[Insert person name]" placeholder="Name" oninput="updateContact('emotional', 0, 'name', this.value)" onblur="saveState()">
-      <input class="contact-phone" value="[Insert phone or link]" placeholder="Phone or link" oninput="updateContact('emotional', 0, 'phone', this.value)" onblur="saveState()">
-      <a class="contact-call" href="tel:[Insert phone]" target="_self" aria-label="Call [Insert person name]">📞</a>
-    </div><div class="contact-row">
-      <input class="contact-name" value="[Insert person name]" placeholder="Name" oninput="updateContact('emotional', 1, 'name', this.value)" onblur="saveState()">
-      <input class="contact-phone" value="[Insert phone or link]" placeholder="Phone or link" oninput="updateContact('emotional', 1, 'phone', this.value)" onblur="saveState()">
-      <a class="contact-call" href="tel:[Insert phone]" target="_self" aria-label="Call [Insert person name]">📞</a>
-    </div><div class="contact-row">
-      <input class="contact-name" value="[Insert person name]" placeholder="Name" oninput="updateContact('emotional', 2, 'name', this.value)" onblur="saveState()">
-      <input class="contact-phone" value="[Insert phone or link]" placeholder="Phone or link" oninput="updateContact('emotional', 2, 'phone', this.value)" onblur="saveState()">
-      <a class="contact-call" href="tel:[Insert phone]" target="_self" aria-label="Call [Insert person name]">📞</a>
-    </div><div class="contact-row">
-      <input class="contact-name" value="" placeholder="Name" oninput="updateContact('emotional', 3, 'name', this.value)" onblur="saveState()">
-      <input class="contact-phone" value="" placeholder="Phone or link" oninput="updateContact('emotional', 3, 'phone', this.value)" onblur="saveState()">
-      <a class="contact-call" href="#" target="_self" aria-label="Call">📞</a>
-    </div></div>
+      <div id="emotional-contacts"></div>
       <button class="add-item-btn" onclick="addContact('emotional')">＋ Add person</button>
     </div>
 
@@ -640,128 +1025,36 @@
         <h2 class="card-title">Professional Support</h2>
         <span class="card-icon">🏥</span>
       </div>
-      <div id="professional-contacts"><div class="contact-row">
-      <input class="contact-name" value="[Insert professional name]" placeholder="Name" oninput="updateContact('professional', 0, 'name', this.value)" onblur="saveState()">
-      <input class="contact-phone" value="[Insert phone or link]" placeholder="Phone or link" oninput="updateContact('professional', 0, 'phone', this.value)" onblur="saveState()">
-      <a class="contact-call" href="#" target="_self" aria-label="Call [Insert professional name]">📞</a>
-    </div><div class="contact-row">
-      <input class="contact-name" value="[Insert professional name]" placeholder="Name" oninput="updateContact('professional', 1, 'name', this.value)" onblur="saveState()">
-      <input class="contact-phone" value="[Insert phone or link]" placeholder="Phone or link" oninput="updateContact('professional', 1, 'phone', this.value)" onblur="saveState()">
-      <a class="contact-call" href="#" target="_self" aria-label="Call [Insert professional name]">📞</a>
-    </div><div class="contact-row">
-      <input class="contact-name" value="[Insert professional name]" placeholder="Name" oninput="updateContact('professional', 2, 'name', this.value)" onblur="saveState()">
-      <input class="contact-phone" value="[Insert phone or link]" placeholder="Phone or link" oninput="updateContact('professional', 2, 'phone', this.value)" onblur="saveState()">
-      <a class="contact-call" href="https://example.com" target="_blank" aria-label="Call [Insert professional name]">🔗</a>
-    </div><div class="contact-row">
-      <input class="contact-name" value="[Insert professional name]" placeholder="Name" oninput="updateContact('professional', 3, 'name', this.value)" onblur="saveState()">
-      <input class="contact-phone" value="[Insert phone or link]" placeholder="Phone or link" oninput="updateContact('professional', 3, 'phone', this.value)" onblur="saveState()">
-      <a class="contact-call" href="#" target="_self" aria-label="Call [Insert professional name]">📞</a>
-    </div><div class="contact-row">
-      <input class="contact-name" value="[Insert professional name]" placeholder="Name" oninput="updateContact('professional', 4, 'name', this.value)" onblur="saveState()">
-      <input class="contact-phone" value="[Insert phone or link]" placeholder="Phone or link" oninput="updateContact('professional', 4, 'phone', this.value)" onblur="saveState()">
-      <a class="contact-call" href="tel:112" target="_self" aria-label="Call [Insert professional name]">📞</a>
-    </div></div>
+      <div id="professional-contacts"></div>
       <button class="add-item-btn" onclick="addContact('professional')">＋ Add contact</button>
     </div>
 
     <!-- Comfort Places -->
-    <div class="card">
+    <div class="card" id="comfort-places">
       <div class="card-header">
         <h2 class="card-title">Comfort Places</h2>
         <span class="card-icon">🏡</span>
       </div>
-      <ul class="item-list" id="places-list"><li class="item-row">
-      <span class="item-number">1</span>
-      <textarea class="item-text" rows="1" oninput="updateItem('places', 0, this.value); autoResize(this)" onblur="saveState()" style="height: 23px;">[Insert comfort place 1]</textarea>
-      <button class="item-delete" onclick="deleteItem('places', 0)" aria-label="Delete">✕</button>
-    </li><li class="item-row">
-      <span class="item-number">2</span>
-      <textarea class="item-text" rows="1" oninput="updateItem('places', 1, this.value); autoResize(this)" onblur="saveState()" style="height: 23px;">[Insert comfort place 2]</textarea>
-      <button class="item-delete" onclick="deleteItem('places', 1)" aria-label="Delete">✕</button>
-    </li><li class="item-row">
-      <span class="item-number">3</span>
-      <textarea class="item-text" rows="1" oninput="updateItem('places', 2, this.value); autoResize(this)" onblur="saveState()" style="height: 23px;">[Insert comfort place 3]</textarea>
-      <button class="item-delete" onclick="deleteItem('places', 2)" aria-label="Delete">✕</button>
-    </li><li class="item-row">
-      <span class="item-number">4</span>
-      <textarea class="item-text" rows="1" oninput="updateItem('places', 3, this.value); autoResize(this)" onblur="saveState()" style="height: 23px;">[Insert comfort place 4]</textarea>
-      <button class="item-delete" onclick="deleteItem('places', 3)" aria-label="Delete">✕</button>
-    </li><li class="item-row">
-      <span class="item-number">5</span>
-      <textarea class="item-text" rows="1" oninput="updateItem('places', 4, this.value); autoResize(this)" onblur="saveState()" style="height: 23px;"></textarea>
-      <button class="item-delete" onclick="deleteItem('places', 4)" aria-label="Delete">✕</button>
-    </li></ul>
+      <ul class="item-list" id="places-list"></ul>
       <button class="add-item-btn" onclick="addItem('places')">＋ Add place</button>
     </div>
 
     <!-- Quick Checklists -->
-    <div class="card">
+    <div class="card" id="quick-checklists">
       <div class="card-header">
         <h2 class="card-title">Quick Checklists</h2>
         <span class="card-icon">✅</span>
       </div>
-      <div id="checklists-container"><div class="checklist-group">
-      <div class="checklist-location-header" onclick="toggleChecklist(0)">
-        <span>📍 [Insert location 1]</span>
-        <span class="chevron">▾</span>
-      </div>
-      <div class="checklist-items">
-        
-          <div class="check-row" onclick="toggleCheck(0, 0)">
-            <div class="check-box"></div>
-            <span class="check-label">[Insert checklist item 1]</span>
-          </div>
-        
-          <div class="check-row" onclick="toggleCheck(0, 1)">
-            <div class="check-box"></div>
-            <span class="check-label">[Insert checklist item 2]</span>
-          </div>
-        
-      </div>
-    </div><div class="checklist-group">
-      <div class="checklist-location-header" onclick="toggleChecklist(1)">
-        <span>📍 [Insert location 2]</span>
-        <span class="chevron">▾</span>
-      </div>
-      <div class="checklist-items">
-        
-          <div class="check-row" onclick="toggleCheck(1, 0)">
-            <div class="check-box"></div>
-            <span class="check-label">[Insert checklist item 3]</span>
-          </div>
-        
-          <div class="check-row" onclick="toggleCheck(1, 1)">
-            <div class="check-box"></div>
-            <span class="check-label">[Insert checklist item 4]</span>
-          </div>
-        
-      </div>
-    </div></div>
+      <div id="checklists-container"></div>
     </div>
 
     <!-- Reasons to Live — full width -->
-    <div class="card full-width">
+    <div class="card full-width" id="reasons-to-live">
       <div class="card-header">
         <h2 class="card-title">Reasons to Live</h2>
         <span class="card-icon">✨</span>
       </div>
-      <div class="reasons-grid" id="reasons-grid"><div class="reason-card">
-      <div class="reason-number">01</div>
-      <textarea class="reason-text" rows="3" oninput="updateReason(0, this.value); autoResize(this)" onblur="saveState()" style="height: 72px;">[Insert reason 1]</textarea>
-      <button class="reason-delete" onclick="deleteReason(0)" aria-label="Delete">✕</button>
-    </div><div class="reason-card">
-      <div class="reason-number">02</div>
-      <textarea class="reason-text" rows="3" oninput="updateReason(1, this.value); autoResize(this)" onblur="saveState()" style="height: 72px;">[Insert reason 2]</textarea>
-      <button class="reason-delete" onclick="deleteReason(1)" aria-label="Delete">✕</button>
-    </div><div class="reason-card">
-      <div class="reason-number">03</div>
-      <textarea class="reason-text" rows="3" oninput="updateReason(2, this.value); autoResize(this)" onblur="saveState()" style="height: 72px;">[Insert reason 3]</textarea>
-      <button class="reason-delete" onclick="deleteReason(2)" aria-label="Delete">✕</button>
-    </div><div class="reason-card">
-      <div class="reason-number">04</div>
-      <textarea class="reason-text" rows="3" oninput="updateReason(3, this.value); autoResize(this)" onblur="saveState()" style="height: 72px;"></textarea>
-      <button class="reason-delete" onclick="deleteReason(3)" aria-label="Delete">✕</button>
-    </div><button class="reason-add">＋</button></div>
+      <div class="reasons-grid" id="reasons-grid"></div>
     </div>
 
   </div>
@@ -779,63 +1072,6 @@
 // ── DATA DEFAULTS ──
 const DEFAULTS = {
   signs: [
-    "[Insert warning sign 1]",
-    "[Insert warning sign 2]",
-    "[Insert warning sign 3]",
-    "[Insert warning sign 4]",
-    "[Insert warning sign 5]",
-    "[Insert warning sign 6]",
-    "[Insert warning sign 7]",
-    "[Insert warning sign 8]"
-  ],
-  strategies: [
-    "[Insert coping strategy 1]",
-    "[Insert coping strategy 2]",
-    "[Insert coping strategy 3]",
-    "[Insert coping strategy 4]",
-    "[Insert coping strategy 5]",
-    "[Insert coping strategy 6]"
-  ],
-  emotionalContacts: [
-    { name: "[Insert person name]", phone: "" },
-    { name: "[Insert person name]", phone: "" },
-    { name: "[Insert person name]", phone: "" }
-  ],
-  professionalContacts: [
-    { name: "[Insert professional name]", phone: "" },
-    { name: "[Insert professional name]", phone: "" },
-    { name: "[Insert professional name]", phone: "" },
-    { name: "[Insert professional name]", phone: "" },
-    { name: "[Insert professional name]", phone: "" }
-  ],
-  places: [
-    "[Insert comfort place 1]",
-    "[Insert comfort place 2]",
-    "[Insert comfort place 3]",
-    "[Insert comfort place 4]",
-    "[Insert comfort place 5]"
-  ],
-  checklists: [
-    {
-      location: "[Insert location 1]",
-      open: true,
-      items: [
-        { text: "[Insert checklist item 1]", checked: false },
-        { text: "[Insert checklist item 2]", checked: false }
-      ]
-    },
-    {
-      location: "[Insert location 2]",
-      open: false,
-      items: [
-        { text: "[Insert checklist item 3]", checked: false },
-        { text: "[Insert checklist item 4]", checked: false }
-      ]
-    }
-  ],
-  reasons: [
-    "[Insert reason 1]",
-    "[Insert reason 2]",
     "[Insert warning sign 1]",
     "[Insert warning sign 2]",
     "[Insert warning sign 3]",
@@ -950,7 +1186,7 @@ function renderContacts(type, arr) {
   const el = document.getElementById(`${type}-contacts`);
   if (!el) return;
   el.innerHTML = '';
-  arr.forEach((c, i) => {
+  (arr || []).forEach((c, i) => {
     const row = document.createElement('div');
     row.className = 'contact-row';
     const isUrl = c.phone && c.phone.startsWith('http');
@@ -973,7 +1209,7 @@ function renderChecklists() {
   const el = document.getElementById('checklists-container');
   if (!el) return;
   el.innerHTML = '';
-  state.checklists.forEach((group, gi) => {
+  (state.checklists || []).forEach((group, gi) => {
     const div = document.createElement('div');
     div.className = `checklist-group${group.open ? '' : ' collapsed'}`;
     div.innerHTML = `
@@ -982,7 +1218,7 @@ function renderChecklists() {
         <span class="chevron">▾</span>
       </div>
       <div class="checklist-items">
-        ${group.items.map((item, ii) => `
+        ${(group.items || []).map((item, ii) => `
           <div class="check-row${item.checked ? ' checked' : ''}" onclick="toggleCheck(${gi}, ${ii})">
             <div class="check-box">${item.checked ? '✓' : ''}</div>
             <span class="check-label">${escHtml(item.text)}</span>
@@ -998,7 +1234,7 @@ function renderReasons() {
   const el = document.getElementById('reasons-grid');
   if (!el) return;
   el.innerHTML = '';
-  state.reasons.forEach((text, i) => {
+  (state.reasons || []).forEach((text, i) => {
     const card = document.createElement('div');
     card.className = 'reason-card';
     card.innerHTML = `
@@ -1012,14 +1248,22 @@ function renderReasons() {
     const ta = card.querySelector('textarea');
     autoResize(ta);
   });
-  // Add button
+  
   const addBtn = document.createElement('button');
   addBtn.className = 'reason-add';
   addBtn.textContent = '＋';
+  addBtn.setAttribute('aria-label', 'Add reason');
   addBtn.onclick = () => {
     state.reasons.push('');
     saveState();
     renderReasons();
+    setTimeout(() => {
+      const cards = el.querySelectorAll('.reason-card');
+      if (cards.length) {
+        const lastTa = cards[cards.length - 1].querySelector('textarea');
+        if (lastTa) lastTa.focus();
+      }
+    }, 50);
   };
   el.appendChild(addBtn);
 }
@@ -1071,6 +1315,7 @@ function toggleCheck(gi, ii) {
 
 function toggleChecklist(gi) {
   state.checklists[gi].open = !state.checklists[gi].open;
+  saveState();
   renderChecklists();
 }
 
@@ -1083,11 +1328,20 @@ function deleteReason(i) {
 }
 
 // ── THEME ──
-let darkMode = false;
+function initTheme() {
+  const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+  document.getElementById('themeToggle').textContent = currentTheme === 'dark' ? '🌙' : '☀️';
+}
+
 document.getElementById('themeToggle').addEventListener('click', () => {
-  darkMode = !darkMode;
-  document.documentElement.setAttribute('data-theme', darkMode ? 'dark' : '');
-  document.getElementById('themeToggle').textContent = darkMode ? '🌙' : '☀️';
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const newTheme = isDark ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', newTheme);
+  document.getElementById('themeToggle').textContent = newTheme === 'dark' ? '🌙' : '☀️';
+  try {
+    localStorage.setItem('safetyPlan_theme', newTheme);
+    localStorage.setItem('fitnessHub_v050_theme', newTheme);
+  } catch (e) {}
 });
 
 // ── DROPDOWNS ──
@@ -1107,12 +1361,22 @@ document.addEventListener('click', e => {
 // ── SCROLL TO SECTION ──
 function scrollToSection(id) {
   const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    el.style.transition = 'border-color 0.3s ease, box-shadow 0.3s ease';
+    el.style.borderColor = 'var(--accent)';
+    el.style.boxShadow = '0 0 0 3px var(--accent-subtle)';
+    setTimeout(() => {
+      el.style.borderColor = '';
+      el.style.boxShadow = '';
+    }, 1600);
+  }
   document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
 }
 
 // ── AUTO RESIZE TEXTAREA ──
 function autoResize(ta) {
+  if (!ta) return;
   ta.style.height = 'auto';
   ta.style.height = ta.scrollHeight + 'px';
 }
@@ -1128,10 +1392,8 @@ function escHtml(str) {
 
 // ── DOWNLOAD FILE ──
 function downloadFile() {
-  // Embed current state into a fresh copy of this file
   const stateJson = JSON.stringify(state);
   const currentHtml = document.documentElement.outerHTML;
-  // Inject state as inline script so it auto-loads without localStorage on new device
   const injected = currentHtml.replace(
     '// ── DATA DEFAULTS ──',
     `// ── INJECTED SAVED STATE ──\ntry { localStorage.setItem('safetyPlan_v1', ${JSON.stringify(stateJson)}); } catch(e) {}\n\n// ── DATA DEFAULTS ──`
@@ -1145,10 +1407,10 @@ function downloadFile() {
 }
 
 // ── INIT ──
+initTheme();
 loadState();
 renderAll();
 </script>
-
 
 </body>
 </html>
