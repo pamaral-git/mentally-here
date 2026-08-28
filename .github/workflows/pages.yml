@@ -33,21 +33,7 @@ jobs:
           touch _site/.nojekyll
           cp fitness-hub.html _site/
           cp safety-plan.html _site/
-
-          # create a homepage that lists both
-          cat > _site/index.html << 'HTML'
-          <!doctype html>
-          <html lang="en">
-          <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>mentally-here</title></head>
-          <body style="font-family:system-ui;max-width:600px;margin:40px auto;line-height:1.6">
-            <h1>mentally-here</h1>
-            <ul>
-              <li><a href="./fitness-hub.html">fitness-hub.html</a></li>
-              <li><a href="./safety-plan.html">safety-plan.html</a></li>
-            </ul>
-          </body>
-          </html>
-          HTML
+          cp index.html _site/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
