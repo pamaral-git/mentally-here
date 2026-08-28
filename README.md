@@ -1,6 +1,6 @@
-# Mentally Here
+# [Mentally Here](https://pedromanuelamaral.github.io/mentally-here/Index.html)
 
-A personal companion project for your mental health journey. Started as a safety plan app, now evolving into a broader toolkit for navigating life's highs and lows.
+A personal companion project for your mental health journey. Started as a safety plan app, now evolving into a broader toolkit for navigating life's highs and lows (with art, other humans, and what you value as reasons to live).
 
 > "Pain is hard to bear," he cried, "But with patience, day by day, even this shall pass away." — Theodore Tilton
 
@@ -42,10 +42,6 @@ A private, self-hosted, single-file web app that acts as physical health reposit
 **How it works:**
 1. Download [`fitness-hub.html`](https://pedromanuelamaral.github.io/mentally-here/fitness-hub.html) (single html file with everything and vanilla `JS`)
 2. Open it in your browser of choice (any browser. No login or tracking)
-
-## 🗓️ COMING SOON
-1. **ART AS A COMPANION** — Curation of free readings (audio/text), video content and other works of art for the highs and lows
-2. **PERSONAL AI** — Scripts, instructions, guides to use AI as a help (but not substitute for professionals)
 
 ---
 **More Resources:**
