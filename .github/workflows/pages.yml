@@ -33,7 +33,7 @@ jobs:
           touch _site/.nojekyll
           cp fitness-hub.html _site/
           cp safety-plan.html _site/
-          cp index.html _site/
+          cp Index.html _site/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
