@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mentally Here</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=DM+Sans:wght@400;500&family=Outfit:wght@600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f4ef;
+  --card:#fffefa;
+  --ink:#151410;
+  --muted:#6f6b64;
+  --line:#e9e2d2;
+  --line-strong:#d8d0bd;
+  --green:#4a5e1a;
+  --font-serif:'Fraunces', Georgia, serif;
+  --font-sans:'DM Sans', system-ui, sans-serif;
+  --font-display:'Outfit', system-ui, sans-serif;
+  --font-mono:'JetBrains Mono', monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0; background:var(--bg); color:var(--ink); font-family:var(--font-sans); -webkit-font-smoothing:antialiased}
+a{color:inherit; text-decoration:none}
+.shell{width:min(1320px, calc(100% - 56px)); margin:0 auto; padding:72px 0 80px}
+.layout{display:grid; grid-template-columns: 0.92fr 1.08fr; gap:72px; align-items:start; min-height:calc(100vh - 144px)}
+.left{padding-top:112px}
+.kicker{display:flex; align-items:center; gap:14px; margin-bottom:28px; font-family:var(--font-mono); font-size:11px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--green)}
+.kicker::before{content:""; width:52px; height:1.5px; background:var(--green); display:block}
+h1{margin:0; font-family:var(--font-serif); font-weight:400; font-size:clamp(3.8rem, 6.6vw, 6.4rem); line-height:0.88; letter-spacing:-0.05em}
+.desc{margin:32px 0 0; max-width:48ch; font-size:17px; line-height:1.65; color:var(--ink)}
+.desc em{font-family:var(--font-serif); font-style:italic}
+.ctas{display:flex; gap:12px; margin-top:40px; flex-wrap:wrap}
+.btn{display:inline-flex; align-items:center; gap:10px; height:44px; padding:0 18px; border-radius:8px; font-family:var(--font-display); font-weight:700; font-size:14px; border:1px solid transparent; transition:all 180ms ease}
+.btn-dark{background:var(--ink); color:var(--card); border-color:var(--ink)}
+.btn-dark:hover{transform:translateY(-1px); background:#2a2926}
+.btn-light{background:var(--card); color:var(--ink); border-color:var(--line-strong)}
+.btn-light:hover{transform:translateY(-1px); border-color:var(--ink)}
+.btn .ico{width:22px; height:22px; border-radius:50%; display:grid; place-items:center; background:rgba(255,255,255,0.18); font-size:12px}
+.btn-light .ico{background:rgba(0,0,0,0.06)}
+
+/* cards */
+.grid{display:grid; grid-template-columns:1fr 1fr; gap:22px; align-items:start; padding-top:12px; border-top:1px solid var(--line)}
+.card{position:relative; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:28px 26px 22px; min-height:246px; display:flex; flex-direction:column; transition:transform 220ms ease, border-color 220ms ease}
+.card:hover{transform:translateY(-2px); border-color:var(--line-strong)}
+.card-top{display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:22px}
+.tag{font-family:var(--font-mono); font-size:9px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink); border:1px solid var(--line); padding:5px 9px; border-radius:5px; background:#fff; line-height:1}
+.arrow{font-size:14px; line-height:1}
+.card h2{margin:0 0 12px; font-family:var(--font-serif); font-weight:400; font-size:32px; line-height:1.02; letter-spacing:-0.02em}
+.card p{margin:0; font-size:14.5px; line-height:1.6; color:var(--muted); max-width:32ch}
+.chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:auto; padding-top:28px}
+.chip{font-family:var(--font-mono); font-size:9px; letter-spacing:0.1em; text-transform:uppercase; border:1px solid var(--line); border-radius:5px; padding:5px 9px; color:var(--muted); background:#fff}
+
+/* Art Companion - corrected: spans 2 columns + transparent buttons */
+.card-wide{grid-column:1 / -1}
+.art-btns{display:flex; flex-wrap:wrap; gap:10px; margin-top:auto; padding-top:28px}
+.art-btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  height:38px; padding:0 16px; border-radius:8px;
+  border:1px solid var(--line-strong);
+  background:transparent;
+  color:var(--ink);
+  font-family:var(--font-display); font-weight:700; font-size:13px;
+  letter-spacing:-0.01em;
+  transition:all 180ms ease;
+}
+.art-btn:hover{background:var(--ink); color:var(--card); border-color:var(--ink); transform:translateY(-1px)}
+
+@media(max-width:1100px){
+  .layout{grid-template-columns:1fr; gap:40px}
+  .left{padding-top:24px}
+  .grid{border-top:none; padding-top:0}
+}
+@media(max-width:680px){
+  .shell{width:min(100% - 28px, 1320px); padding:28px 0 48px}
+  .grid{grid-template-columns:1fr}
+  .card-wide{grid-column:auto}
+  h1{font-size:clamp(3rem, 15vw, 4.2rem)}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+  <div class="layout">
+    <div class="left">
+      <div class="kicker">Personal & Private</div>
+      <h1>Mentally Here</h1>
+      <p class="desc">Your Mental and Physical health Toolkit. <em>"Pain is hard to bear, but with patience, day by day, even this shall pass away."</em> — Theodore Tilton</p>
+      <div class="ctas">
+        <a class="btn btn-dark" href="./safety-plan.html">Mental Wellbeing <span class="ico">→</span></a>
+        <a class="btn btn-light" href="./fitness-hub.html">Physical Wellbeing</a>
+      </div>
+    </div>
+
+    <div class="grid">
+      <a class="card" href="./safety-plan.html">
+        <div class="card-top">
+          <span class="tag">Mental Health</span>
+          <span class="arrow">→</span>
+        </div>
+        <h2>Safety Plan</h2>
+        <p>Personal, editable and single file for times of need.</p>
+        <div class="chips">
+          <span class="chip">Warning</span>
+          <span class="chip">Coping</span>
+          <span class="chip">Support</span>
+          <span class="chip">Purpose</span>
+        </div>
+      </a>
+
+      <a class="card" href="./fitness-hub.html">
+        <div class="card-top">
+          <span class="tag">Physical Health</span>
+          <span class="arrow">→</span>
+        </div>
+        <h2>Fitness Hub</h2>
+        <p>Collection of video-workouts to stay active.</p>
+        <div class="chips">
+          <span class="chip">Workouts</span>
+          <span class="chip">Audiobooks</span>
+          <span class="chip">Schedule</span>
+          <span class="chip">More</span>
+        </div>
+      </a>
+
+      <div class="card card-wide">
+        <div class="card-top">
+          <span class="tag">Bibliotherapy</span>
+        </div>
+        <h2>Art Companion</h2>
+        <p>Artworks that're here for you when you need.</p>
+        <p>"And when I feel like crying, opening a book is not enough, I need a hug" — Adília Lopes</p>
+        <div class="art-btns">
+          <a class="art-btn" href="https://youtu.be/xby5467EbdU">🎼 Acoustic</a>
+          <a class="art-btn" href="https://youtu.be/hEMJQakG6x8">🎭 Jokes</a>
+          <a class="art-btn" href="https://youtu.be/_UtE2WBbuJk">📜 Kindness</a>
+          <a class="art-btn" href="https://youtube.com/playlist?list=PL2-AeqAzHT4Irz7jZh_ixy_LA9Tb8Ntrc&si=BnlVZ4U-aXMgf0EI">🎦 Cinema</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
