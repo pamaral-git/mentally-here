@@ -6,7 +6,7 @@ A personal companion [web app](https://pamaral-git.github.io/mentally-here/Index
 
 In days of struggling with my own mental health and searching for safety plan apps but disliking the products I found, I realized that one of my ways of coping was to **"Create something I care about."** So I built something to get through another day that's open-sourced, customizable, private, self-hosted and free, because someone somewhere might one day need a reason still be here.
 
-## 🫂 [SAFETY PLAN](https://pamaral-git.github.io/mentally-here/safety-plan.html)
+## 🫂 [SAFETY PLAN](https://pamaral-git.github.io/mentally-here/safety.html)
 
 Your personal, offline-first mental health/suicide prevention safety plan interface for you.
 
@@ -20,7 +20,7 @@ Your personal, offline-first mental health/suicide prevention safety plan interf
 - Selection of art to keep you company
 
 **How it works:**
-1. Download [`safety-plan.html`](https://pamaral-git.github.io/mentally-here/safety-plan.html)
+1. Download [`safety.html`](https://pamaral-git.github.io/mentally-here/safety.html)
 2. Open it in your browser of choice
 3. Live edit it just like any other document with your information
 4. Click "Download file" to save it locally
@@ -30,7 +30,7 @@ Your personal, offline-first mental health/suicide prevention safety plan interf
 - Editable in the browser with data saved inside the file on export
 - Relies solely on Download-Use offline in private
 
-## 🛷 [FITNESS HUB](https://pamaral-git.github.io/mentally-here/fitness-hub.html)
+## 🛷 [FITNESS HUB](https://pamaral-git.github.io/mentally-here/physically.html)
 
 A private, self-hosted, single-file web app that acts as physical health repository inside this personal companion for you.
 
@@ -41,7 +41,7 @@ A private, self-hosted, single-file web app that acts as physical health reposit
 - Session intention and packaging
 
 **How it works:**
-1. Download [`fitness-hub.html`](https://pamaral-git.github.io/mentally-here/fitness-hub.html) (single html file with everything and vanilla `JS`)
+1. Download [`physically.html`](https://pamaral-git.github.io/mentally-here/physically.html) (single html file with everything and vanilla `JS`)
 2. Open it in your browser of choice (any browser. No login or tracking)
 
 ---

@@ -49,7 +49,7 @@
     --space-2xl: 48px;
     --radius: 12px;
     --radius-sm: 6px;
-    
+
     --font-serif: 'Fraunces', Georgia, serif;
     --font-sans: 'DM Sans', system-ui, sans-serif;
     --font-display: 'Outfit', system-ui, sans-serif;
@@ -813,6 +813,116 @@
 
   .spacer-bottom { height: 96px; }
 
+  .questionnaire {
+    margin: 0 auto var(--space-xl);
+    max-width: 860px;
+    padding: var(--space-xl);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    text-align: left;
+  }
+
+  .questionnaire h2 {
+    font-family: var(--font-serif);
+    font-size: 1.7rem;
+    font-weight: 400;
+    margin-bottom: var(--space-sm);
+    text-align: center;
+  }
+
+  .questionnaire-intro, .questionnaire-help {
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .questionnaire-intro { text-align: center; }
+
+  .questionnaire-progress {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    margin: var(--space-lg) 0;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+  }
+
+  .questionnaire-progress progress {
+    width: min(55%, 320px);
+    height: 8px;
+    accent-color: var(--accent);
+  }
+
+  .questionnaire-step[hidden] { display: none; }
+
+  .questionnaire-step h3 {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    margin-bottom: 6px;
+  }
+
+  .questionnaire-step h3:focus { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+  .questionnaire-step label, .contact-fields label {
+    display: block;
+    margin: var(--space-md) 0 6px;
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .questionnaire-step textarea, .contact-fields input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    background: var(--bg);
+    color: var(--text-primary);
+    font: inherit;
+    line-height: 1.5;
+  }
+
+  .questionnaire-step textarea { min-height: 120px; resize: vertical; }
+  .questionnaire-step textarea:focus, .contact-fields input:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .contact-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 var(--space-md);
+  }
+
+  .questionnaire-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-sm);
+    margin-top: var(--space-lg);
+  }
+
+  .questionnaire-nav button {
+    min-height: 42px;
+    padding: 9px 14px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    font: 600 0.9rem var(--font-sans);
+    cursor: pointer;
+  }
+
+  .questionnaire-nav .primary-action {
+    background: var(--text-primary);
+    color: var(--bg);
+    border-color: var(--text-primary);
+  }
+
+  .questionnaire-status { min-height: 1.5em; margin-top: var(--space-sm); color: var(--accent); }
+
   /* ── RESPONSIVE BREAKPOINTS (Mobile & Tablet Refinements) ── */
   @media (max-width: 820px) {
     .grid { grid-template-columns: 1fr; gap: var(--space-md); }
@@ -825,7 +935,7 @@
       padding: 8px 12px;
       gap: 6px;
     }
-    
+
     .topbar-nav {
       gap: 4px;
     }
@@ -893,6 +1003,10 @@
       padding: 8px 12px;
       font-size: 0.8rem;
     }
+
+    .questionnaire { padding: var(--space-md); }
+    .contact-fields { grid-template-columns: 1fr; }
+    .questionnaire-nav button { padding: 8px 10px; font-size: 0.82rem; }
   }
 
   @media (max-width: 360px) {
@@ -934,7 +1048,7 @@
 
   <div class="topbar-actions">
     <!-- Quick Link to Fitness Hub -->
-    <a href="./fitness-hub.html" class="icon-btn" data-tooltip="Fitness Hub (Physical Health)" aria-label="Fitness Hub">🏃</a>
+    <a href="./physically.html" class="icon-btn" data-tooltip="Fitness Hub (Physical Health)" aria-label="Fitness Hub">🏃</a>
 
     <!-- Light/Dark Mode -->
     <button class="icon-btn" id="themeToggle" data-tooltip="Toggle theme" aria-label="Toggle theme">☀️</button>
@@ -979,15 +1093,58 @@
 <main class="container">
 
   <div class="hero">
-    <h1 class="hero-title">My Safety Plan</h1>
+    <h1 class="hero-title">Mentally and Safely Here</h1>
     <p class="hero-quote">
-      "Pain is hard to bear," he cried;<br>
-      "But with patience, day by day,<br>
+      "Pain is hard to bear, but with patience, day by day,<br>
       Even this shall pass away."
     </p>
+    <br>
+
+  <section class="questionnaire" id="questionnaire" aria-labelledby="questionnaire-title" hidden>
+    <h2 id="questionnaire-title">Create your private safety plan:</h2>
+    <p class="questionnaire-intro">Answer at your own pace. Nothing gets uploaded and everything stays with you on download.</p>
+    <div class="questionnaire-progress">
+      <span id="questionnaire-step-label" aria-live="polite">Step 1 of 5</span>
+      <progress id="questionnaire-progress" max="5" value="1" aria-label="Questionnaire progress"></progress>
+    </div>
+    <form id="plan-questionnaire" autocomplete="off" onsubmit="return false">
+      <section class="questionnaire-step" aria-labelledby="step-title-1">
+        <h3 id="step-title-1">What feels harder lately, or what early signs tell you that you need extra support?</h3>
+        <textarea id="answer-signs" data-lines="signs" aria-labelledby="step-title-1" placeholder="Example: withdrawing from people, or not sleeping well"></textarea>
+      </section>
+      <section class="questionnaire-step" aria-labelledby="step-title-2" hidden>
+        <h3 id="step-title-2">What helps you to cope and get through a hard moment, even for a few minutes?</h3>
+        <textarea id="answer-strategies" data-lines="strategies" aria-labelledby="step-title-2" placeholder="A song, a walk, a grounding exercise, or another activity that works for you"></textarea>
+      </section>
+      <section class="questionnaire-step" aria-labelledby="step-title-3" hidden>
+        <h3 id="step-title-3">Who could you reach out to in a hard moment?</h3>
+        <div id="emotional-answers" class="contact-fields"></div>
+      </section>
+      <section class="questionnaire-step" aria-labelledby="step-title-4" hidden>
+        <h3 id="step-title-4">Who can you contact for professional or urgent support?</h3>
+        <p class="questionnaire-help">Care provider, local service, urgent support or <a href="https://findahelpline.com/i/iasp">helplines</a></p>
+        <div id="professional-answers" class="contact-fields"></div>
+      </section>
+      <section class="questionnaire-step" aria-labelledby="step-title-5" hidden>
+        <h3 id="step-title-5">Finally:</h3>
+        <label for="answer-places">Which place brings you comfort and joy?</label>
+        <textarea id="answer-places" data-lines="places" placeholder="A room, a nearby place, or somewhere you feel at ease"></textarea>
+        <label for="answer-safety-actions">What could help you feel safer in your surroundings?</label>
+        <textarea id="answer-safety-actions" data-lines="safetyActions" placeholder="Ideas you choose for your own situation"></textarea>
+        <label for="answer-reasons">What people, experiences, or hopes matter most to you?</label>
+        <textarea id="answer-reasons" data-lines="reasons" placeholder="Anything that feels and gives you meaning"></textarea>
+      </section>
+      <div class="questionnaire-nav">
+        <button type="button" id="questionnaire-back">← Back</button>
+        <button type="button" id="questionnaire-next" class="primary-action">Next step →</button>
+        <button type="button" id="questionnaire-apply" class="primary-action" hidden>Use answers in my plan</button>
+      </div>
+      <p class="questionnaire-status" id="questionnaire-status" role="status" aria-live="polite"></p>
+    </form>
+  </section>
   </div>
 
-  <div class="grid">
+  <div class="grid" id="grid">
 
     <!-- Warning Signs -->
     <div class="card" id="warning-signs">
@@ -1139,16 +1296,127 @@ let state = {};
 
 function loadState() {
   try {
-    const saved = localStorage.getItem('safetyPlan_v1');
+    const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) state = JSON.parse(saved);
-    else state = JSON.parse(JSON.stringify(DEFAULTS));
+    else state = JSON.parse(JSON.stringify(typeof EXPORTED_STATE !== 'undefined' ? EXPORTED_STATE : DEFAULTS));
   } catch(e) {
-    state = JSON.parse(JSON.stringify(DEFAULTS));
+    state = JSON.parse(JSON.stringify(typeof EXPORTED_STATE !== 'undefined' ? EXPORTED_STATE : DEFAULTS));
   }
 }
 
+function splitAnswers(value) {
+  return value.split(/\r?\n/).map(line => line.trim()).filter(Boolean);
+}
+
+function hasPlanText(value) {
+  const text = typeof value === 'string' ? value.trim() : '';
+  return Boolean(text) && !/^\[Insert\b/i.test(text);
+}
+
+function hasSavedPlanContent(plan) {
+  if (!plan || typeof plan !== 'object') return false;
+  const lists = [plan.signs, plan.strategies, plan.places, plan.reasons];
+  if (lists.some(list => Array.isArray(list) && list.some(hasPlanText))) return true;
+
+  const contacts = [...(plan.emotionalContacts || []), ...(plan.professionalContacts || [])];
+  if (contacts.some(contact => hasPlanText(contact?.name) || hasPlanText(contact?.phone))) return true;
+
+  return (plan.checklists || []).some(group =>
+    hasPlanText(group?.location) || (group?.items || []).some(item => hasPlanText(item?.text))
+  );
+}
+
+function updateQuestionnaireVisibility() {
+  document.getElementById('questionnaire').hidden = hasSavedPlanContent(state);
+}
+
+let questionnaireStep = 0;
+let questionnaireDirty = false;
+const questionnaireSteps = [...document.querySelectorAll('.questionnaire-step')];
+
+function renderQuestionnaireStep() {
+  questionnaireSteps.forEach((step, index) => { step.hidden = index !== questionnaireStep; });
+  document.getElementById('questionnaire-step-label').textContent = `Step ${questionnaireStep + 1} of ${questionnaireSteps.length}`;
+  document.getElementById('questionnaire-progress').value = questionnaireStep + 1;
+  document.getElementById('questionnaire-back').disabled = questionnaireStep === 0;
+  document.getElementById('questionnaire-next').hidden = questionnaireStep === questionnaireSteps.length - 1;
+  document.getElementById('questionnaire-apply').hidden = questionnaireStep !== questionnaireSteps.length - 1;
+  const heading = questionnaireSteps[questionnaireStep].querySelector('h3');
+  heading.tabIndex = -1;
+  heading.focus();
+}
+
+function makeContactFields(containerId, prefix, count) {
+  const container = document.getElementById(containerId);
+  container.innerHTML = Array.from({ length: count }, (_, index) => `
+    <div>
+      <label for="${prefix}-name-${index}">Person ${index + 1}</label>
+      <input id="${prefix}-name-${index}" data-contact="${prefix}" data-field="name" data-index="${index}" placeholder="Name">
+      <label for="${prefix}-phone-${index}">Phone or link</label>
+      <input id="${prefix}-phone-${index}" data-contact="${prefix}" data-field="phone" data-index="${index}" placeholder="Phone or link" inputmode="tel">
+    </div>`).join('');
+}
+
+function fillQuestionnaireFromState() {
+  document.querySelectorAll('[data-lines]').forEach(field => {
+    const key = field.dataset.lines;
+    const values = key === 'safetyActions'
+      ? (state.checklists || []).flatMap(group => (group.items || []).map(item => item.text))
+      : state[key] || [];
+    field.value = values.filter(value => !/^\[Insert /i.test(value)).join('\n');
+  });
+  document.querySelectorAll('[data-contact]').forEach(field => {
+    const key = field.dataset.contact === 'emotional' ? 'emotionalContacts' : 'professionalContacts';
+    const contact = (state[key] || [])[Number(field.dataset.index)];
+    if (contact) field.value = contact[field.dataset.field] || '';
+  });
+}
+
+function applyQuestionnaire(scrollToPlan = true) {
+  state.signs = splitAnswers(document.getElementById('answer-signs').value);
+  state.strategies = splitAnswers(document.getElementById('answer-strategies').value);
+  state.places = splitAnswers(document.getElementById('answer-places').value);
+  state.reasons = splitAnswers(document.getElementById('answer-reasons').value);
+  state.emotionalContacts = collectContacts('emotional');
+  state.professionalContacts = collectContacts('professional');
+  const safetyActions = splitAnswers(document.getElementById('answer-safety-actions').value);
+  state.checklists = safetyActions.length ? [{
+    location: 'Ways I can make my surroundings safer',
+    open: true,
+    items: safetyActions.map(text => ({ text, checked: false }))
+  }] : [];
+  questionnaireDirty = false;
+  document.getElementById('questionnaire-status').textContent = 'Your answers are in your plan on this device.';
+  saveState();
+  renderAll();
+  if (scrollToPlan) document.getElementById('grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function collectContacts(type) {
+  return [...document.querySelectorAll(`[data-contact="${type}"][data-field="name"]`)].map(nameField => {
+    const index = nameField.dataset.index;
+    const phoneField = document.querySelector(`[data-contact="${type}"][data-field="phone"][data-index="${index}"]`);
+    return { name: nameField.value.trim(), phone: phoneField.value.trim() };
+  }).filter(contact => contact.name || contact.phone);
+}
+
+document.getElementById('questionnaire-back').addEventListener('click', () => {
+  if (questionnaireStep > 0) questionnaireStep -= 1;
+  renderQuestionnaireStep();
+});
+document.getElementById('questionnaire-next').addEventListener('click', () => {
+  if (questionnaireStep < questionnaireSteps.length - 1) questionnaireStep += 1;
+  renderQuestionnaireStep();
+});
+document.getElementById('questionnaire-apply').addEventListener('click', applyQuestionnaire);
+document.getElementById('plan-questionnaire').addEventListener('input', () => { questionnaireDirty = true; });
+
+makeContactFields('emotional-answers', 'emotional', 3);
+makeContactFields('professional-answers', 'professional', 3);
+
 function saveState() {
-  try { localStorage.setItem('safetyPlan_v1', JSON.stringify(state)); } catch(e) {}
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {}
+  updateQuestionnaireVisibility();
 }
 
 // ── RENDER HELPERS ──
@@ -1248,7 +1516,7 @@ function renderReasons() {
     const ta = card.querySelector('textarea');
     autoResize(ta);
   });
-  
+
   const addBtn = document.createElement('button');
   addBtn.className = 'reason-add';
   addBtn.textContent = '＋';
@@ -1392,24 +1660,30 @@ function escHtml(str) {
 
 // ── DOWNLOAD FILE ──
 function downloadFile() {
-  const stateJson = JSON.stringify(state);
+  if (questionnaireDirty) applyQuestionnaire(false);
+  const stateJson = JSON.stringify(state).replace(/</g, '\\u003c');
+  const storageKey = `safetyPlan_${Date.now()}_${Math.random().toString(36).slice(2)}`;
   const currentHtml = document.documentElement.outerHTML;
   const injected = currentHtml.replace(
-    '// ── DATA DEFAULTS ──',
-    `// ── INJECTED SAVED STATE ──\ntry { localStorage.setItem('safetyPlan_v1', ${JSON.stringify(stateJson)}); } catch(e) {}\n\n// ── DATA DEFAULTS ──`
+    /\/\/ ── INJECTED SAVED STATE ──[\s\S]*?\/\/ ── DATA DEFAULTS ──/,
+    `// ── INJECTED SAVED STATE ──\nconst EXPORTED_STATE = ${stateJson};\nconst EXPORTED_STORAGE_KEY = ${JSON.stringify(storageKey)};\n\n// ── DATA DEFAULTS ──`
   );
   const blob = new Blob([injected], { type: 'text/html' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = `safety-plan-${new Date().toISOString().slice(0,10)}.html`;
+  a.download = `safety-${new Date().toISOString().slice(0,10)}.html`;
   a.click();
   URL.revokeObjectURL(a.href);
 }
 
 // ── INIT ──
 initTheme();
+let STORAGE_KEY = typeof EXPORTED_STORAGE_KEY !== 'undefined' ? EXPORTED_STORAGE_KEY : 'safetyPlan_v1';
 loadState();
 renderAll();
+fillQuestionnaireFromState();
+updateQuestionnaireVisibility();
+if (!document.getElementById('questionnaire').hidden) renderQuestionnaireStep();
 </script>
 
 </body>

@@ -27,12 +27,12 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v6
 
-      - name: Build _site with only your 2 files
+      - name: Build _site
         run: |
           mkdir -p _site
           touch _site/.nojekyll
-          cp fitness-hub.html _site/
-          cp safety-plan.html _site/
+          cp physically.html _site/
+          cp safety.html _site/
           cp Index.html _site/
 
       - name: Upload artifact
